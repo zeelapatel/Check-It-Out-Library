@@ -1,0 +1,66 @@
+package com.example.demo.controller;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entity.AssignBooks;
+import com.example.demo.entity.Book;
+import com.example.demo.services.BooksService;
+
+@RestController
+@RequestMapping("/Books")
+public class BookController {
+	private final BooksService booksService;
+
+    public BookController(BooksService booksService) {
+        this.booksService = booksService;
+    }
+	@PostMapping("/assignBook")
+	public AssignBooks assignBook(@RequestBody AssignBooks book) {
+		return booksService.assignBook(book);
+	}
+
+	@PostMapping("/addBook")
+	public void addBook(@RequestBody Book book) {
+		booksService.addBook(book);
+	}
+
+	@GetMapping("/sortByName")
+	public List<Book> sortBookByName() {
+	    // Assuming that booksService is an instance variable in your controller
+	    List<Book> allBooks = booksService.findAllBook();
+
+	    // Sort books by name using Comparator
+	    List<Book> sortedBooks = allBooks.stream()
+	            .sorted(Comparator.comparing(Book::getBookName))
+	            .collect(Collectors.toList());
+
+	    return sortedBooks;
+	}
+	@GetMapping("/sortByQuantity")
+	public List<Book> sortBookByQuantity() {
+	    // Assuming that booksService is an instance variable in your controller
+	    List<Book> allBooks = booksService.findAllBook();
+
+	    // Sort books by name using Comparator
+	    List<Book> sortedBooks = allBooks.stream()
+	            .sorted(Comparator.comparing(Book::getQuantity))
+	            .collect(Collectors.toList());
+
+	    return sortedBooks;	
+	}
+	
+	@GetMapping("/findAllBok")
+	public List<Book> getAllBook(){
+	    return booksService.findAllBook();
+
+	}
+}

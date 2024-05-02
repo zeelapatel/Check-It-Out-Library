@@ -1,0 +1,61 @@
+package com.example.demo.controller;
+
+
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entity.Admin;
+
+import com.example.demo.services.AdminService;
+
+@RestController
+@RequestMapping("/Admin")
+public class AdminController {
+	
+	
+	private final AdminService adminservice;
+
+    public AdminController(AdminService adminService) {
+        this.adminservice = adminService;
+    }
+    
+	long adminid;
+
+	@PostMapping("/addadmin")
+	public Admin addadmin(@RequestBody Admin admin) {
+		return adminservice.addAdmin(admin);
+
+	}
+
+	@PostMapping("/adminverify")
+	public ResponseEntity<String> verifyCredentials(@RequestBody Map<String, String> credentials) {
+		String email = credentials.get("adminemail");
+		String password = credentials.get("password");
+
+		Admin admin = adminservice.verifyCredentials(email, password);
+
+		if (admin != null) {
+			// Capture the id and name
+			Long aid = admin.getAdminid();// ....................................................
+			adminid = aid;
+			String name = admin.getAdminfirstName() + " " + admin.getAdminlastName();
+
+			// Create a response message
+			String response = "Credentials are valid! Student Id: " + aid + ", Name: " + name;
+
+			System.out.println(response);
+			// Return the response with a status code of 200 (OK)
+			return ResponseEntity.ok(response);
+		} else {
+			// Return an error response with a status code of 401 (Unauthorized)
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials!");
+		}
+	}
+
+}

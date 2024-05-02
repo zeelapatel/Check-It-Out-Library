@@ -1,0 +1,34 @@
+package com.example.demo.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repo.StudentRepo;
+
+@Service
+public class StudentService {
+
+	@Autowired
+	private StudentRepo studentrepo;
+	
+	public Student saveStudent(Student student) {
+		return studentrepo.save(student);
+		
+	}
+	
+	public Student verifyCredentials(String email, String password) {
+        Student user = studentrepo.findByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            // Return the Student object with id and name
+            return user;
+        }
+        return null; // Credentials are invalid
+    }
+	
+	public Optional<Student> getStudentById(int studentId) {
+        return studentrepo.findById((long) studentId);
+    }
+}

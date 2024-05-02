@@ -1,0 +1,32 @@
+!SESSION 2023-12-03 16:32:52.111 -----------------------------------------------
+eclipse.buildId=4.28.0.20230608-1200
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+This is a continuation of log file D:\Assignments\Project testing phase\.metadata\.bak_0.log
+Created Time: 2023-12-03 16:33:02.032
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-12-03 16:33:02.033
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-12-03 16:33:02.056
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 12624
+
+!ENTRY org.eclipse.egit.ui 2 0 2023-12-03 16:33:04.731
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\smitp'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-12-03 16:33:04.888
+!MESSAGE Boot project ADDED: demo-1
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-12-03 16:33:04.889
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-12-03 16:33:04.893
+!MESSAGE Started Boot LS process
